@@ -16,7 +16,7 @@ app.use(function(req, res, next) {
 const redirect_uri = 'http://localhost:8888/callback';
 
 app.get('/login', (req, res) => {
-  console.log("login hit");
+  //Create uri to spotifyAuth and send it back to client, client then will redirect user.
   const stringify = querystring.stringify({
     response_type: 'code',
     client_id: process.env.SPOTIFY_CLIENT_ID,
@@ -28,7 +28,6 @@ app.get('/login', (req, res) => {
 });
 
 app.get('/callback', (req, res) => {
-  console.log('callback hit');
   const code = req.query.code || null;
   const authOptions = {
     url: 'https://accounts.spotify.com/api/token',
