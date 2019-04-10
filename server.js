@@ -4,6 +4,8 @@ const request = require('request');
 var cors = require('cors')
 require('dotenv').config();
 
+const youtubeFunctions = require('./youtubeFunctions');
+
 const app = express();
 const port = 8888;
 
@@ -48,6 +50,12 @@ app.get('/callback', (req, res) => {
     const uri = process.env.FRONTEND_URI || 'http://localhost:3000';
     res.redirect(uri + '?access_token=' + access_token)
   })
+});
+
+app.get('/getVideoDetails/:videoId', async (req, res) => {
+  const {videoId} = req.params;
+  const videoDetails = await youtubeFunctions.getVideoById(videoId);
+  res.send(videoDetails)
 });
 
 app.listen(port, () => {
