@@ -55,7 +55,7 @@ app.get('/callback', (req, res) => {
 app.get('/getVideoDetails/:videoId', async (req, res) => {
   const {videoId} = req.params;
   const videoDetails = await youtubeFunctions.getVideoById(videoId);
-  res.send(videoDetails)
+  res.send({videoDetails});
 });
 
 app.listen(port, () => {
