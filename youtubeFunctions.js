@@ -11,5 +11,5 @@ async function getVideoById(id) {
 }
 
 module.exports = {
-  getVideoById: getVideoById
+  getVideoById
 };
